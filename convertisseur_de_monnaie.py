@@ -8,7 +8,11 @@ conv.geometry('480x360')
 conv.title('convertisseur-de-monnaie')
 frame = Frame(conv, width=480, height=480, bg='gray60')
 frame.grid(row=0, column=0)
-s
+label_historic = []
+historic = Listbox(conv, listvariable=label_historic, bg='gray40', width=30)
+historic.place(x=280, y=180)
+
+
 # Set list of currency and StringVar
 
 list_currency = ['Dollar', 'Euro', 'Livre Sterling']
@@ -47,8 +51,11 @@ convert_button.place(x=20, y=240)
 
 def convert_calc():
     global change
+    change = str(float(result.get()))       # Store input value for the historic result
+    historic_memo = change
+
     if value1.get() == "Dollar" and value2.get() == "Euro":
-        change = str(float(result.get())*0.90)
+        change = str(float(result.get()) * 0.90)
         result.set(change)
 
     elif value1.get() == "Dollar" and value2.get() == "Livre Sterling":
@@ -70,6 +77,9 @@ def convert_calc():
     elif value1.get() == "Euro" and value2.get() == "Livre Sterling":
         change = str(float(result.get()) * 0.88)
         result.set(change)
+
+    historic_result = historic_memo + value1.get() + "=" + change + value2.get()
+    historic.insert(0, historic_result)  # Display operation values + results
 
 
 conv.mainloop()
