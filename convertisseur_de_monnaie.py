@@ -15,7 +15,7 @@ historic.place(x=280, y=180)
 
 # Set list of currency and StringVar
 
-list_currency = ['Dollar', 'Euro', 'Livre Sterling']
+list_currency = ['Dollar', 'Euro', 'Livre Sterling', 'Yen']
 value1 = StringVar()
 value2 = StringVar()
 change = ''
@@ -46,7 +46,7 @@ convert_button = Button(frame, width=30, height=5, text="CONVERT", bg='grey40', 
 convert_button.place(x=20, y=200)
 
 clear_history_button = Button(frame, text="CLEAR HISTORY", bg='grey40', fg='white', command=lambda: clear_history())
-clear_history_button.place(x=360, y=150)
+clear_history_button.place(x=367, y=150)
 
 # Function to convert each currency into another
 
@@ -56,6 +56,8 @@ def convert_calc():
     change = str(float(result.get()))       # Store input value for the historic result
     historic_memo = change
 
+    # Dollar
+
     if value1.get() == "Dollar" and value2.get() == "Euro":
         change = str(float(result.get()) * 0.90)
         result.set(change)
@@ -63,6 +65,12 @@ def convert_calc():
     elif value1.get() == "Dollar" and value2.get() == "Livre Sterling":
         change = str(float(result.get()) * 0.80)
         result.set(change)
+
+    elif value1.get() == "Dollar" and value2.get() == "Yen":
+        change = str(float(result.get()) * 130)
+        result.set(change)
+
+    # Livre Sterling
 
     elif value1.get() == "Livre Sterling" and value2.get() == "Euro":
         change = str(float(result.get()) * 1.1)
@@ -72,6 +80,12 @@ def convert_calc():
         change = str(float(result.get()) * 1.2)
         result.set(change)
 
+    elif value1.get() == "Livre Sterling" and value2.get() == "Yen":
+        change = str(float(result.get()) * 160)
+        result.set(change)
+
+    # Euro
+
     elif value1.get() == "Euro" and value2.get() == "Dollar":
         change = str(float(result.get()) * 1.08)
         result.set(change)
@@ -79,6 +93,26 @@ def convert_calc():
     elif value1.get() == "Euro" and value2.get() == "Livre Sterling":
         change = str(float(result.get()) * 0.88)
         result.set(change)
+
+    elif value1.get() == "Euro" and value2.get() == "Yen":
+        change = str(float(result.get()) * 141)
+        result.set(change)
+
+    # Yen
+
+    elif value1.get() == "Yen" and value2.get() == "Dollar":
+        change = str(float(result.get()) * 0.008)
+        result.set(change)
+
+    elif value1.get() == "Yen" and value2.get() == "Livre Sterling":
+        change = str(float(result.get()) * 0.006)
+        result.set(change)
+
+    elif value1.get() == "Yen" and value2.get() == "Euro":
+        change = str(float(result.get()) * 0.007)
+        result.set(change)
+
+    # Display operation values + results
 
     historic_result = historic_memo + value1.get() + "=" + change + value2.get()
     historic.insert(0, historic_result)  # Display operation values + results
