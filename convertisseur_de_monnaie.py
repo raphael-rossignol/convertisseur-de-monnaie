@@ -42,9 +42,11 @@ amount_label.place(x=20, y=120)
 amount_entry = Entry(frame, width=55, textvariable=result)
 amount_entry.place(x=20, y=150)
 
-convert_button = Button(frame, text="CONVERT", bg='grey40', fg='white', command=lambda: convert_calc())
-convert_button.place(x=20, y=240)
+convert_button = Button(frame, width=30, height=5, text="CONVERT", bg='grey40', fg='white', command=lambda: convert_calc())
+convert_button.place(x=20, y=200)
 
+clear_history_button = Button(frame, text="CLEAR HISTORY", bg='grey40', fg='white', command=lambda: clear_history())
+clear_history_button.place(x=360, y=150)
 
 # Function to convert each currency into another
 
@@ -80,6 +82,13 @@ def convert_calc():
 
     historic_result = historic_memo + value1.get() + "=" + change + value2.get()
     historic.insert(0, historic_result)  # Display operation values + results
+
+# Button to clear history
+
+
+def clear_history():
+    historic.delete(0, END)
+
 
 
 conv.mainloop()
